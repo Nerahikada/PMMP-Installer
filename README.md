@@ -1,2 +1,2 @@
-# PMMP-Installer
-EASY PMMP Installer
+# PMMP Installer
+EASY and SIMPLE PMMP Installer
