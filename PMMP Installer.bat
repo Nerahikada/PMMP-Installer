@@ -2,11 +2,26 @@
 title PocketMine-MP Installer by Nerahikada
 cd /d %~dp0
 
+: 
+:  _   _                _     _ _             _       
+: | \ | | ___ _ __ __ _| |__ (_) | ____ _  __| | __ _ 
+: |  \| |/ _ \ '__/ _` | '_ \| | |/ / _` |/ _` |/ _` |
+: | |\  |  __/ | | (_| | | | | |   < (_| | (_| | (_| |
+: |_| \_|\___|_|  \__,_|_| |_|_|_|\_\__,_|\__,_|\__,_|
+: 
+:  Automatic PocketMine-MP Installer
+:   Link: https://github.com/Nerahikada/PMMP-Installer
+:   LICENSE: CC BY-NC-SA 4.0
+:    - http://creativecommons.org/licenses/by-nc-sa/4.0/
+: 
+: 
+
+
 REM 遅延展開-有効
 setlocal EnableDelayedExpansion
 
 set /p TEXT = [CHECKING] Microsoft Visual C++ 2017 Redistributable ^> < nul
-REM TODO: このチェックは不完全な可能性がある
+REM このチェックは不完全な可能性がある
 reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall" /s | find "Microsoft Visual C++ 2017 x64 Minimum Runtime"
 if %ERRORLEVEL% == 0 (
 	echo Installed
