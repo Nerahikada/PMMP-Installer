@@ -17,12 +17,24 @@ cd /d %~dp0
 : 
 
 
+
+set /p TEXT = [CHECKING] Network connection ^> < nul
+ping -n 1 -l 1 google.com | find "ms TTL=" > nul
+if ERRORLEVEL 1 (
+	echo Not Connected
+	echo [ERROR] Please check network connection.
+	pause
+	exit
+)
+echo Connected
+
+
 REM 遅延展開-有効
 setlocal EnableDelayedExpansion
 
 set /p TEXT = [CHECKING] Microsoft Visual C++ 2017 Redistributable ^> < nul
 REM このチェックは不完全な可能性がある
-reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall" /s | find "Microsoft Visual C++ 2017 x64 Minimum Runtime"
+reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall" /s | find "Microsoft Visual C++ 2017 x64 Minimum Runtime" > nul
 if %ERRORLEVEL% == 0 (
 	echo Installed
 ) else if %ERRORLEVEL% == 1 (
