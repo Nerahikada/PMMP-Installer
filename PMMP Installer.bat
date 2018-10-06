@@ -112,8 +112,22 @@ set /p TEXT = [DOWNLOADING] start.cmd ^> < nul
 bitsadmin /RawReturn /TRANSFER d2 https://raw.githubusercontent.com/pmmp/PocketMine-MP/master/start.cmd %CD%\start.cmd
 echo Done
 
+if exist %USERPROFILE%\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe (
+	setlocal EnableDelayedExpansion
+	CheckNetIsolation LoopbackExempt -s | find "8wekyb3d8bbwe" > nul
+	if !ERRORLEVEL! == 1 (
+		set /p TEXT = [ENABLING] Minecraft Loopback  *Require Administrator Permission* ^> < nul
+		powershell start-process CheckNetIsolation 'LoopbackExempt -a -n=Microsoft.MinecraftUWP_8wekyb3d8bbwe' -verb runas
+		echo Done
+	)
+	setlocal DisableDelayedExpansion
+)
+
 echo.
 echo #   PMMP Installer - COMPLETE!
 echo.
 
-pause
+timeout 5 > nul
+
+call start
+exit /b
