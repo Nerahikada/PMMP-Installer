@@ -33,31 +33,40 @@ REM 遅延展開-有効
 setlocal EnableDelayedExpansion
 
 set /p TEXT = [CHECKING] Microsoft Visual C++ 2017 Redistributable ^> < nul
-REM このチェックは不完全な可能性がある
 reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall" /s | find "Microsoft Visual C++ 2017 x64 Minimum Runtime" > nul
 if %ERRORLEVEL% == 0 (
 	echo Installed
 ) else if %ERRORLEVEL% == 1 (
-	echo Not installed
-
-	set /p TEXT = [DOWNLOADING] Microsoft Visual C++ 2017 Redistributable ^> < nul
-	bitsadmin /RawReturn /TRANSFER d0 https://aka.ms/vs/15/release/vc_redist.x64.exe %CD%\vs_redist.x64.exe
-	echo Done
-
-	set /p TEXT = [INSTALLING] Microsoft Visual C++ 2017 Redistributable ^> < nul
-	call vs_redist.x64.exe
-	del vs_redist.x64.exe
-	echo Done
-
-	set /p TEXT = [CHECKING] Microsoft Visual C++ 2017 Redistributable ^> < nul
-	reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall" /s | find "Microsoft Visual C++ 2017 x64 Minimum Runtime" > nul
-	if !ERRORLEVEL! == 1 (
-		echo Not installed
-		echo [ERROR] Microsoft Visual C++ 2017 Redistributable could not install!
-		pause
-		exit
+	reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall" /s | find "Microsoft Visual C++ 2017 x64 Minimum Runtime" > nul
+	if !ERRORLEVEL! == 0 (
+		echo Installed
 	) else (
-		echo Success
+		echo Not installed
+
+		set /p TEXT = [DOWNLOADING] Microsoft Visual C++ 2017 Redistributable ^> < nul
+		bitsadmin /RawReturn /TRANSFER d0 https://aka.ms/vs/15/release/vc_redist.x64.exe %CD%\vs_redist.x64.exe
+		echo Done
+
+		set /p TEXT = [INSTALLING] Microsoft Visual C++ 2017 Redistributable ^> < nul
+		call vs_redist.x64.exe
+		del vs_redist.x64.exe
+		echo Done
+
+		set /p TEXT = [CHECKING] Microsoft Visual C++ 2017 Redistributable ^> < nul
+		reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall" /s | find "Microsoft Visual C++ 2017 x64 Minimum Runtime" > nul
+		if !ERRORLEVEL! == 1 (
+			reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall" /s | find "Microsoft Visual C++ 2017 x64 Minimum Runtime" > nul
+			if !ERRORLEVEL! == 1 (
+				echo Not installed
+				echo [ERROR] Microsoft Visual C++ 2017 Redistributable could not install!
+				pause
+				exit
+			) else (
+				echo Success
+			)
+		) else (
+			echo Success
+		)
 	)
 )
 
