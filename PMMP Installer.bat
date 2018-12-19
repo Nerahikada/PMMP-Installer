@@ -18,17 +18,6 @@ cd /d %~dp0
 
 
 
-set /p TEXT = [CHECKING] Network connection ^> < nul
-ping -n 1 -l 1 google.com | find "ms TTL=" > nul
-if ERRORLEVEL 1 (
-	echo Not Connected
-	echo [ERROR] Please check network connection.
-	pause
-	exit
-)
-echo Connected
-
-
 REM 遅延展開-有効
 setlocal EnableDelayedExpansion
 
