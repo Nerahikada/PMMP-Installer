@@ -1,5 +1,5 @@
 @echo off
-title PocketMine-MP Installer by Nerahikada
+title PocketMine-MP Installer v2.0 - by Nerahikada
 cd /d %~dp0
 
 : 
@@ -16,24 +16,30 @@ cd /d %~dp0
 : 
 : 
 
+echo PocketMine-MP Installer  v2.0
+echo   - Author: Nerahikada
+echo   - Twitter: https://twitter.com/Nerahikada
+echo   - GitHub: https://github.com/Nerahikada
+echo   - YouTube: https://www.youtube.com/Nerahikada
+echo.
 
 
 REM 遅延展開-有効
 setlocal EnableDelayedExpansion
 
 set /p TEXT = [CHECKING] Microsoft Visual C++ 2017 Redistributable ^> < nul
-reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall" /s | find "Microsoft Visual C++ 2017 x64 Minimum Runtime" > nul
+reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall" /s | find "Microsoft Visual C++ 2017" | find "64 Minimum Runtime" > nul
 if %ERRORLEVEL% == 0 (
 	echo Installed
 ) else if %ERRORLEVEL% == 1 (
-	reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall" /s | find "Microsoft Visual C++ 2017 x64 Minimum Runtime" > nul
+	reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall" /s | find "Microsoft Visual C++ 2017" | find "64 Minimum Runtime" > nul
 	if !ERRORLEVEL! == 0 (
 		echo Installed
 	) else (
 		echo Not installed
 
 		set /p TEXT = [DOWNLOADING] Microsoft Visual C++ 2017 Redistributable ^> < nul
-		bitsadmin /RawReturn /TRANSFER d0 https://aka.ms/vs/15/release/vc_redist.x64.exe %CD%\vs_redist.x64.exe
+		bitsadmin /RawReturn /TRANSFER d0 https://aka.ms/vs/15/release/vc_redist.x64.exe %CD%\vc_redist.x64.exe
 		echo Done
 
 		set /p TEXT = [INSTALLING] Microsoft Visual C++ 2017 Redistributable ^> < nul
@@ -79,6 +85,7 @@ set /p TEXT = [EXTRACTING] PHP Binary ^> < nul
 call unzip.vbs
 del unzip.vbs
 del bin.zip
+del vc_redist.x64.exe
 echo Done
 
 
