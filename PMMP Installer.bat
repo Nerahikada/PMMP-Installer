@@ -1,5 +1,5 @@
 @echo off
-title PocketMine-MP Installer v2.0 - by Nerahikada
+title PocketMine-MP Installer v2.0.1 - by Nerahikada
 cd /d %~dp0
 
 : 
@@ -16,7 +16,7 @@ cd /d %~dp0
 : 
 : 
 
-echo PocketMine-MP Installer  v2.0
+echo PocketMine-MP Installer  v2.0.1
 echo   - Author: Nerahikada
 echo   - Twitter: https://twitter.com/Nerahikada
 echo   - GitHub: https://github.com/Nerahikada
@@ -43,8 +43,8 @@ if %ERRORLEVEL% == 0 (
 		echo Done
 
 		set /p TEXT = [INSTALLING] Microsoft Visual C++ 2017 Redistributable ^> < nul
-		call vs_redist.x64.exe
-		del vs_redist.x64.exe
+		call vc_redist.x64.exe
+		del vc_redist.x64.exe
 		echo Done
 
 		set /p TEXT = [CHECKING] Microsoft Visual C++ 2017 Redistributable ^> < nul
