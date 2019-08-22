@@ -1,5 +1,5 @@
 @echo off
-title PocketMine-MP Installer v2.0.1 - by Nerahikada
+title PocketMine-MP Installer v2.0.2 - by Nerahikada
 cd /d %~dp0
 
 : 
@@ -12,11 +12,11 @@ cd /d %~dp0
 :  Automatic PocketMine-MP Installer
 :   Link: https://github.com/Nerahikada/PMMP-Installer
 :   LICENSE: CC BY-NC-SA 4.0
-:    - http://creativecommons.org/licenses/by-nc-sa/4.0/
+:    - https://creativecommons.org/licenses/by-nc-sa/4.0/
 : 
 : 
 
-echo PocketMine-MP Installer  v2.0.1
+echo PocketMine-MP Installer  v2.0.2
 echo   - Author: Nerahikada
 echo   - Twitter: https://twitter.com/Nerahikada
 echo   - GitHub: https://github.com/Nerahikada
@@ -70,7 +70,7 @@ setlocal DisableDelayedExpansion
 
 
 set /p TEXT = [DOWNLOADING] PHP Binary ^> < nul
-bitsadmin /RawReturn /TRANSFER d1 https://jenkins.pmmp.io/job/PHP-7.2-Aggregate/lastSuccessfulBuild/artifact/PHP-7.2-Windows-x64.zip %CD%\bin.zip
+bitsadmin /RawReturn /TRANSFER d1 https://jenkins.pmmp.io/job/PHP-7.3-Aggregate/lastSuccessfulBuild/artifact/PHP-7.3-Windows-x64.zip %CD%\bin.zip
 echo Done
 
 REM unzip module
@@ -117,6 +117,13 @@ set /p TEXT = [DOWNLOADING] start.cmd ^> < nul
 bitsadmin /RawReturn /TRANSFER d2 https://raw.githubusercontent.com/pmmp/PocketMine-MP/master/start.cmd %CD%\start.cmd
 echo Done
 
+set /p TEXT = [DOWNLOADING] DevTools.phar ^> < nul
+if not exist %CD%\plugins (
+	mkdir %CD%\plugins
+)
+bitsadmin /RawReturn /TRANSFER d3 https://jenkins.pmmp.io/job/PocketMine-MP/lastSuccessfulBuild/artifact/DevTools.phar %CD%\plugins\DevTools.phar
+echo Done
+
 if exist %USERPROFILE%\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe (
 	setlocal EnableDelayedExpansion
 	CheckNetIsolation LoopbackExempt -s | find "8wekyb3d8bbwe" > nul
@@ -131,8 +138,3 @@ if exist %USERPROFILE%\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bb
 echo.
 echo #   PMMP Installer - COMPLETE!
 echo.
-
-timeout 5 > nul
-
-call start
-exit /b
