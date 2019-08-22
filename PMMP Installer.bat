@@ -138,3 +138,5 @@ if exist %USERPROFILE%\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bb
 echo.
 echo #   PMMP Installer - COMPLETE!
 echo.
+
+pause
