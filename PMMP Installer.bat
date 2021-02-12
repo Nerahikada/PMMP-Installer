@@ -1,5 +1,5 @@
 @echo off
-title PocketMine-MP Installer v2.0.3 - by Nerahikada
+title PocketMine-MP Installer v2.0.4 - by Nerahikada
 cd /d %~dp0
 
 : 
@@ -16,11 +16,12 @@ cd /d %~dp0
 : 
 : 
 
-echo PocketMine-MP Installer  v2.0.3
+echo PocketMine-MP Installer  v2.0.4
 echo   - Author: Nerahikada
 echo   - Twitter: https://twitter.com/Nerahikada
 echo   - GitHub: https://github.com/Nerahikada
 echo   - YouTube: https://www.youtube.com/Nerahikada
+echo   - Discord: ねらひかだ#0001
 echo.
 
 
@@ -70,7 +71,7 @@ setlocal DisableDelayedExpansion
 
 
 set /p TEXT = [DOWNLOADING] PHP Binary ^> < nul
-bitsadmin /RawReturn /TRANSFER d1 https://jenkins.pmmp.io/job/PHP-7.3-Aggregate/lastSuccessfulBuild/artifact/PHP-7.3-Windows-x64.zip %CD%\bin.zip
+bitsadmin /RawReturn /TRANSFER d1 https://jenkins.pmmp.io/job/PHP-7.4-Aggregate/lastSuccessfulBuild/artifact/PHP-7.4-Windows-x64.zip %CD%\bin.zip
 echo Done
 
 REM unzip module
