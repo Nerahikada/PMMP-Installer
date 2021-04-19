@@ -1,5 +1,5 @@
 @echo off
-title PocketMine-MP Installer v2.0.4 - by Nerahikada
+title PocketMine-MP Installer v2.0.5 - by Nerahikada
 cd /d %~dp0
 
 : 
@@ -21,11 +21,9 @@ echo   - Author: Nerahikada
 echo   - Twitter: https://twitter.com/Nerahikada
 echo   - GitHub: https://github.com/Nerahikada
 echo   - YouTube: https://www.youtube.com/Nerahikada
-echo   - Discord: ねらひかだ#0001
 echo.
 
 
-REM 遅延展開-有効
 setlocal EnableDelayedExpansion
 
 set /p TEXT = [CHECKING] Microsoft Visual C++ 2017(~2019?) Redistributable ^> < nul
@@ -66,7 +64,6 @@ if %ERRORLEVEL% == 0 (
 	)
 )
 
-REM 遅延展開-無効
 setlocal DisableDelayedExpansion
 
 
