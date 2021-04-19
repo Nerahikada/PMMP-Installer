@@ -1,5 +1,5 @@
 @echo off
-title PocketMine-MP Installer v2.0.5 - by Nerahikada
+title PocketMine-MP Installer v2.0.5
 cd /d %~dp0
 
 : 
@@ -16,7 +16,7 @@ cd /d %~dp0
 : 
 : 
 
-echo PocketMine-MP Installer  v2.0.4
+echo PocketMine-MP Installer  v2.0.5
 echo   - Author: Nerahikada
 echo   - Twitter: https://twitter.com/Nerahikada
 echo   - GitHub: https://github.com/Nerahikada
